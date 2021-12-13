@@ -40,7 +40,15 @@ seedDb();
 
 //sauce route
 
+app.get('/sauces', async (req, res) => {
+    const sauceList = await Sauce.findAll()
+    res.render('sauces', {sauceList})
+})
 
+app.get('/sauces/:id', async (req, res) => {
+    const sauce = await Sauce.findByPk(req.params.id)
+    res.render('sauce', {sauce})
+})
 //sauces route
 
 app.listen(port, () => {
